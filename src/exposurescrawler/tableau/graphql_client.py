@@ -46,13 +46,14 @@ def retrieve_custom_sql(
             # logger().debug('- Ignoring {} connectionType for workbook'.format(
             #    custom_sql_table['database']['connectionType']))
             continue
-
+        logger().info(custom_sql_table['downstreamWorkbooks'])
         for downstream_workbook in custom_sql_table['downstreamWorkbooks']:
             workbook = WorkbookReference(downstream_workbook['luid'], downstream_workbook['name'])
 
             logger().debug(f' ➕ {workbook.name} | adding custom SQL')
             workbooks_custom_sqls.setdefault(workbook, []).append(custom_sql_table['query'])
-
+    logger.info("workbooks_custom_sqls")
+    logger.info(workbooks_custom_sqls)
     logger().info(f'🔍 Found {len(workbooks_custom_sqls.keys())} workbooks with custom SQL')
 
     return workbooks_custom_sqls
