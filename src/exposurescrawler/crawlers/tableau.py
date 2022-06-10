@@ -23,7 +23,6 @@ def _should_ignore_workbook(workbook, projects_to_ignore: Collection[str]) -> bo
     # by workbooks under projects without a name.
     if not workbook.project_name:
         return True
-    
     return workbook.project_name in projects_to_ignore
 
 
@@ -88,9 +87,10 @@ def tableau_crawler(
 
     # Configure the Tableau REST client
     tableau_client = TableauRestClient(
-        os.environ['TABLEAU_URL'],
+        os.environ['TABLEAU_SERVER_NAME'],
         os.environ['TABLEAU_USERNAME'],
         os.environ['TABLEAU_PASSWORD'],
+        os.environ['TABLEAU_SITE_NAME']
     )
 
     # Retrieve custom SQLs and find model references
