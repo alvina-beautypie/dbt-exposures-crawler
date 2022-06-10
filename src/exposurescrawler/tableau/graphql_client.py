@@ -34,6 +34,7 @@ def retrieve_custom_sql(
     results = _fetch_custom_sql(tableau_client)
 
     logger().info('🔍 Parsing GraphQL result: looking for custom SQL tables')
+    logger().info(results)
 
     workbooks_custom_sqls: WorkbookModelsMapping = {}
 
