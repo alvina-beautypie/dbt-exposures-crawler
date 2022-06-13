@@ -34,7 +34,6 @@ def retrieve_custom_sql(
     results = _fetch_custom_sql(tableau_client)
 
     logger().info('🔍 Parsing GraphQL result: looking for custom SQL tables')
-    logger().info(results)
 
     workbooks_custom_sqls: WorkbookModelsMapping = {}
 
@@ -46,7 +45,7 @@ def retrieve_custom_sql(
             # logger().debug('- Ignoring {} connectionType for workbook'.format(
             #    custom_sql_table['database']['connectionType']))
             continue
-        logger().info(custom_sql_table['downstreamWorkbooks'])
+
         for downstream_workbook in custom_sql_table['downstreamWorkbooks']:
             workbook = WorkbookReference(downstream_workbook['luid'], downstream_workbook['name'])
 
