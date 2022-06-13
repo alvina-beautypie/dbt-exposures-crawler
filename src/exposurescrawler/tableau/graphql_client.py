@@ -39,8 +39,6 @@ def retrieve_custom_sql(
     workbooks_custom_sqls: WorkbookModelsMapping = {}
 
     for custom_sql_table in results['customSQLTablesConnection']['nodes']:
-        logger().info(custom_sql_table)
-        logger().info(custom_sql_table['database']['connectionType'])
         if (
             only_connection_type
             and custom_sql_table['database']['connectionType'] != only_connection_type
@@ -54,8 +52,7 @@ def retrieve_custom_sql(
 
             logger().debug(f' ➕ {workbook.name} | adding custom SQL')
             workbooks_custom_sqls.setdefault(workbook, []).append(custom_sql_table['query'])
-    logger.info("workbooks_custom_sqls")
-    logger.info(workbooks_custom_sqls)
+
     logger().info(f'🔍 Found {len(workbooks_custom_sqls.keys())} workbooks with custom SQL')
 
     return workbooks_custom_sqls
