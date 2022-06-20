@@ -24,12 +24,12 @@ class DbtManifest(UserDict):
         models = {}
 
         for node_id, node in self.data['nodes'].items():
-            fqn = '{}.{}.{}'.format(node['database'], node['schema'], node['alias'])
+            fqn = '{}.{}.{}'.format(node['database'], node['schema'], node['alias']).lower()
             node['materialized_name'] = fqn
             models[fqn] = node
 
         for node_id, node in self.data['sources'].items():
-            fqn = '{}.{}.{}'.format(node['database'], node['schema'], node['name'])
+            fqn = '{}.{}.{}'.format(node['database'], node['schema'], node['name']).lower()
             node['materialized_name'] = fqn
             models[fqn] = node
 
